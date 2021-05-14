@@ -1,0 +1,7 @@
+/CsvImporter/bin/
+/CsvImporter/DB/Stock1.CSV
+/CsvImporter/LoadFiles/Stock.CSV
+/CsvImporter/Logs/
+/CsvImporterTest/bin/
+/CsvImporterTest/obj/
+/CsvImporterTest/obj/Debug/netcoreapp3.1/CsvImporterTest.csprojAssemblyReference.cache

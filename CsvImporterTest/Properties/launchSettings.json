@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "CsvImporterTest": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Test"
+      }
+    }
+  }
+}

@@ -3,13 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsvImporter", "CsvImporter.csproj", "{405938AA-7043-4BF1-A01F-FA6D87BFC462}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsvImporter", "CsvImporter.csproj", "{405938AA-7043-4BF1-A01F-FA6D87BFC462}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helpers", "Helpers", "{F59288A7-30AC-43C6-B292-9697216800C3}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{08B3C067-9FA1-4EA1-B304-BD18ED77267B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsvImporterTest", "..\CsvImporterTest\CsvImporterTest.csproj", "{A5BEC617-7F73-4AC4-869F-281584278823}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsvImporterTest", "..\CsvImporterTest\CsvImporterTest.csproj", "{A5BEC617-7F73-4AC4-869F-281584278823}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
