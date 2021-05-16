@@ -21,12 +21,12 @@ jobs:
 
       # restore dependencies  
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore .CsvImporter/CsvImporter.sln
 
       # build project
     - name: Build
-      run: dotnet build --configuration $config --no-restore
+      run: dotnet build .CsvImporter/CsvImporter.sln --configuration $config --no-restore
       
       # run tests project
     - name: Tests      
-  run: dotnet test --no-restore --no-build --configuration $config --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};"
+      run: dotnet test --no-restore --no-build --configuration $config --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};"
