@@ -9,8 +9,7 @@ jobs:
     # use ubuntu for more build minutes
     runs-on: ubuntu-latest
     # use release mode for all steps
-    env:
-      config: 'Release'
+ 
 
     steps:
     - uses: actions/checkout@v2
@@ -29,4 +28,4 @@ jobs:
       
       # run tests project
     - name: Tests      
-      run: dotnet test --restore --build --configuration 
+      run: dotnet test   --configuration 
