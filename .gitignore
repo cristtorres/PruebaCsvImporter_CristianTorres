@@ -14,3 +14,14 @@
 /CsvImporter/obj/Debug/netcoreapp3.1/CsvImporter.assets.cache
 /CsvImporterTest/obj/Debug/netcoreapp3.1/CsvImporterTest.assets.cache
 /CsvImporterTest/obj/Debug/netcoreapp3.1/CsvImporterTest.csprojAssemblyReference.cache
+/CsvImporter/obj/
+/CsvImporter/.vs/CsvImporter/
+/CsvImporterTest/obj/
+/CsvImporterTest/obj/project.nuget.cache
+/CsvImporter/obj/
+/CsvImporterTest/obj/Debug/netcoreapp3.1/CsvImporterTest.csprojAssemblyReference.cache
+/CsvImporter/obj/Debug/netcoreapp3.1/CsvImporter.csprojAssemblyReference.cache
+/CsvImporterTest/obj/Debug/netcoreapp3.1/CsvImporterTest.csprojAssemblyReference.cache
+/CsvImporterTest/obj/project.nuget.cache
+/CsvImporter/.vs/CsvImporter/DesignTimeBuild/.dtbcache.v2
+/CsvImporter/.vs/CsvImporter/v16/.suo
