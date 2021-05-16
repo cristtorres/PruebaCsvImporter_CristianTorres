@@ -1,0 +1,11 @@
+/CsvImporterTest/bin/
+/CsvImporter/obj/
+/CsvImporter/Logs/
+/CsvImporter/bin/
+/CsvImporter/LoadFiles/Stock.CSV
+/CsvImporterTest/obj/
+/CsvImporter/.vs/CsvImporter/config/applicationhost.config
+/CsvImporter/.vs/CsvImporter/DesignTimeBuild/.dtbcache.v2
+/CsvImporter/.vs/CsvImporter/v16/.suo
+/CsvImporter/.vs/CsvImporter/v16/TestStore/0/001.testlog
+/CsvImporter/.vs/CsvImporter/v16/TestStore/0/testlog.manifest
