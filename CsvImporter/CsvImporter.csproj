@@ -62,4 +62,13 @@
     </Resource>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Data\DBCsvImport.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\DBCsvImport_log.ldf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
