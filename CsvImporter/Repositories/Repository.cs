@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,8 @@ namespace CsvImporter.Repositories
         {
             var connectionToAttachSql = String.Empty;
             var connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+            Directory.SetCurrentDirectory(AppContext.BaseDirectory);
             var path = Environment.CurrentDirectory;
             if (path.Contains("\\bin\\Debug\\netcoreapp3.1"))
             {
@@ -40,29 +43,28 @@ namespace CsvImporter.Repositories
             {
                 connectionToAttachSql = connectionString.Replace("%PATH%", path);
             }
-            return connectionToAttachSql;
+            return  connectionToAttachSql.ToString();
         }
 
         /// <summary>
         /// Elimina todos los registros de la tabla Stock
         /// </summary>
         /// <returns></returns>
-        public async Task Clear()
+        public async Task<bool> Clear()
         {
             try
             {
                 _logger.LogInformation("Eliminando datos de la tabla..");
                 _db.Database.ExecuteSqlRaw("truncate table stock");
-                //foreach (var item in this.GetAll().Result)
-                //    _db.Stocks.Remove(item);
-
+            
                   _db.SaveChanges();
                 _logger.LogInformation("Tabla actualizada para la insercion masiva ");
+                return true; 
             }
             catch (Exception exception)
             {
                 _logger.LogError("Error en el Borrado de datos de Tabla", exception.StackTrace);
-                throw;
+                return false;
             }
             finally
             {
@@ -90,6 +92,7 @@ namespace CsvImporter.Repositories
             try
             {
                 DapperPlusManager.Entity<StockModel>().BatchTimeout(180).BatchSize(500);
+                
                 using (var connection = new SqlConnection( GetConnection())) 
                 {
                      connection.BulkInsert(entities);
@@ -108,7 +111,10 @@ namespace CsvImporter.Repositories
             }
         }
 
-
+        public async Task<int> Count()
+        {
+            return await  _db.Stocks.CountAsync();
+        }
     }
  
  

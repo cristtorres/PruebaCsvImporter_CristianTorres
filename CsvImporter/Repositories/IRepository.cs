@@ -7,8 +7,9 @@ namespace CsvImporter.Repositories
     public interface IRepository 
     {
         Task<IEnumerable<StockModel>> GetAll();
- 
-        Task Clear();
+
+        Task<int> Count();
+        Task<bool> Clear();
         Task InsertRange(System.Collections.Generic.List<StockModel> entities);
     }
 }

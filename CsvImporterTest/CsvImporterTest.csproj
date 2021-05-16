@@ -17,11 +17,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="RepositoriesMock\" />
+    <ProjectReference Include="..\CsvImporter\CsvImporter.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CsvImporter\CsvImporter.csproj" />
+    <None Update="Files\Stock1.CSV">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Files\Stock2.CSV">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

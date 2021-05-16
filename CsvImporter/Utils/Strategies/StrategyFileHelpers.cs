@@ -21,7 +21,7 @@ namespace CsvImporter.Utils.Strategies
             var stopwatch = new Stopwatch();
             stopwatch.Start();
             var engine = new FileHelperAsyncEngine<StockModel>();
-            using (engine.BeginReadFile(path))
+            using (engine.BeginReadFile( path))
                 foreach (var record in engine)
                 {
                     registrosAInsertar.Add(record);

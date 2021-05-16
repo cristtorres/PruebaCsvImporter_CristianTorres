@@ -31,11 +31,7 @@ namespace CsvImporter
          static void  Main(string[] args)
         {
 
-            //var services = Startup.ConfigureServices();
-            //var serviceProvider = services.BuildServiceProvider();
-            //serviceProvider.GetService<EntryPoint>().Run(args);
-
-            var host = CreateHostBuilder(args).Build();
+             var host = CreateHostBuilder(args).Build();
              host.Services.GetRequiredService<Program>().Execute();
         }
 
@@ -45,10 +41,11 @@ namespace CsvImporter
             try
             {
                 _logger.LogInformation("iniciando el programa...");
-                var folderPath = _configuration.GetSection("folderCsv").Get<string>();
-                var delimiter = _configuration.GetSection("delimiter");
-
-                _reader.Read(folderPath, ";");
+                Console.WriteLine("Por favor ingrese el path completo del archivo Csv a cargar ...");
+                var path = Console.ReadLine();
+                var delimiter = _configuration.GetSection("CsvSettings").GetValue<String>("Delimiter");
+                Directory.SetCurrentDirectory(@"C:\");
+                _reader.Read(path, delimiter);
                 _logger.LogInformation("Fin del programa");
                 return true;
             }
@@ -71,46 +68,47 @@ namespace CsvImporter
             return Host.CreateDefaultBuilder(args)
                 .ConfigureServices(services =>
                 {
-                    services.AddTransient<Program>();
-                    var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-                    var builder = new ConfigurationBuilder()
-                        .AddJsonFile($"appsettings.json", true, true)
-                        .AddJsonFile($"appsettings.{env}.json", true, true)
-                        .AddEnvironmentVariables();
+                    Ioc.ConfigureServices(services);
+                    //services.AddTransient<Program>();
+                    //var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+                    //var builder = new ConfigurationBuilder()
+                    //    .AddJsonFile($"appsettings.json", true, true)
+                    //    .AddJsonFile($"appsettings.{env}.json", true, true)
+                    //    .AddEnvironmentVariables();
 
-                    IConfiguration configuration = builder.Build();
-                    var connectionPath = configuration.GetConnectionString("DefaultConnection");
-                    var path = System.IO.Directory.GetCurrentDirectory();
-                    string connectionToAttachSql = string.Empty;
-                    if (path.Contains("\\bin\\Debug\\netcoreapp3.1"))
-                    {
-                       var pathSinfolderBin = path.Replace("\\bin\\Debug\\netcoreapp3.1", string.Empty);
-                          connectionToAttachSql = connectionPath.Replace("%PATH%", pathSinfolderBin);
-                    }
-                    else
-                    {
-                          connectionToAttachSql = connectionPath.Replace("%PATH%", path);
-                    }
+                    //IConfiguration configuration = builder.Build();
+                    //var connectionPath = configuration.GetConnectionString("DefaultConnection");
+                    //var path = System.IO.Directory.GetCurrentDirectory();
+                    //string connectionToAttachSql = string.Empty;
+                    //if (path.Contains("\\bin\\Debug\\netcoreapp3.1"))
+                    //{
+                    //   var pathSinfolderBin = path.Replace("\\bin\\Debug\\netcoreapp3.1", string.Empty);
+                    //      connectionToAttachSql = connectionPath.Replace("%PATH%", pathSinfolderBin);
+                    //}
+                    //else
+                    //{
+                    //      connectionToAttachSql = connectionPath.Replace("%PATH%", path);
+                    //}
 
-                    services.AddSingleton(configuration);
+                    //services.AddSingleton(configuration);
 
-                    services.AddDbContext<ApplicationDbContext>(
-                         options => options.UseSqlServer(connectionToAttachSql));
+                    //services.AddDbContext<ApplicationDbContext>(
+                    //     options => options.UseSqlServer(connectionToAttachSql));
 
-                     services.AddTransient<IStrategy, StrategyStreamReader>();
-                    services.AddTransient<IRepository,Repository>();
+                    // services.AddTransient<IStrategy, StrategyStreamReader>();
+                    //services.AddTransient<IRepository,Repository>();
 
-                    services.AddTransient<IReaderService, LocalReaderCsvService>();
-                    //services.AddSingleton<EntryPoint>();
+                    //services.AddTransient<IReaderService, LocalReaderCsvService>();
+                    ////services.AddSingleton<EntryPoint>();
  
-                    Log.Logger = new LoggerConfiguration()
-                        .Enrich.FromLogContext()
-                        .Enrich.WithProperty("Application", "CsvImporter")
-                        .ReadFrom.Configuration(configuration)
-                        .CreateLogger();
+                    //Log.Logger = new LoggerConfiguration()
+                    //    .Enrich.FromLogContext()
+                    //    .Enrich.WithProperty("Application", "CsvImporter")
+                    //    .ReadFrom.Configuration(configuration)
+                    //    .CreateLogger();
  
-                    services.AddLogging(loggingBuilder =>
-                        loggingBuilder.AddSerilog());
+                    //services.AddLogging(loggingBuilder =>
+                    //    loggingBuilder.AddSerilog());
                 });
         }
 

@@ -4,12 +4,14 @@ using CsvImporter.Models;
 using CsvImporter.Models.Mappers;
 using CsvImporter.Repositories;
 using CsvImporter.Utils;
+using CsvImporter.Utils.Exceptions;
 using CsvImporter.Utils.Strategies;
 using FileHelpers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace CsvImporter.Services
@@ -46,6 +48,11 @@ namespace CsvImporter.Services
             List<StockModel> registrosAInsertar = new List<StockModel>();
             try
             {
+                var extensionFile =   Path.GetExtension(path).ToUpper(); 
+                if (!extensionFile.Contains(".CSV") )
+                {
+                   throw new FileFormatNotSupportedException(path);
+                }
                 _logger.LogInformation("Leyendo archivo ...");
                 await _repository.Clear();
                 registrosAInsertar = _strategyReader.ExecuteAlgorithm(path, delimiter);
@@ -60,6 +67,7 @@ namespace CsvImporter.Services
             }
  
         }
+ 
         #endregion
     }
 }

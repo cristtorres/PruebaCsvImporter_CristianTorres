@@ -22,8 +22,8 @@ namespace CsvImporter.Utils.Strategies
                 string line;
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
-            
-                using (var fs = File.OpenRead(path))
+
+                using (var fs = File.OpenRead(Path.GetFullPath(path)))
                 using (var reader = new StreamReader(fs))
                     while ((line = reader.ReadLine()) != null)
                     {
@@ -33,6 +33,8 @@ namespace CsvImporter.Utils.Strategies
                     }
                 stopwatch.Stop();
                 _logger.LogInformation($" {stopwatch.Elapsed.TotalSeconds} Segundos - Tiempo ejecutado para leer todo el file con StreamReader C#");
+                if(registrosAInsertar.Count>0) 
+                    registrosAInsertar.RemoveAt(0);
                 return registrosAInsertar;   
             }
             catch (Exception e)
