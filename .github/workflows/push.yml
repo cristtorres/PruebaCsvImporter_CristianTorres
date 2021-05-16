@@ -20,11 +20,11 @@ jobs:
 
       # restore dependencies  
     - name: Install dependencies
-      run: dotnet restore .PruebaCsvImporter_CristianTorres/CsvImporter/CsvImporter.sln
+      run: dotnet restore ./CsvImporter/CsvImporter.sln
 
       # build project
     - name: Build
-      run: dotnet build .PruebaCsvImporter_CristianTorres/CsvImporter/CsvImporter.sln --configuration $config --no-restore
+      run: dotnet build ./CsvImporter/CsvImporter.sln --configuration $config --no-restore
       
       # run tests project
     - name: Tests      
