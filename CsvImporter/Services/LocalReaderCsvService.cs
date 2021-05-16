@@ -7,6 +7,7 @@ using CsvImporter.Utils;
 using CsvImporter.Utils.Exceptions;
 using CsvImporter.Utils.Strategies;
 using FileHelpers;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
@@ -51,6 +52,7 @@ namespace CsvImporter.Services
                 var extensionFile =   Path.GetExtension(path).ToUpper(); 
                 if (!extensionFile.Contains(".CSV") )
                 {
+                    _logger.LogError("El tipo de archivo a cargar no es Valido. Ingrese un archivo con extension .CSV ...");
                    throw new FileFormatNotSupportedException(path);
                 }
                 _logger.LogInformation("Leyendo archivo ...");
@@ -60,9 +62,21 @@ namespace CsvImporter.Services
                 await _repository.InsertRange(registrosAInsertar);
                 return registrosAInsertar.Count;
             }
-            catch (Exception e)
+
+            
+            catch (SqlException e)
             {
-                 _logger.LogWarning($"Error al procesar el archivo Csv :{path}", e.StackTrace);
+                _logger.LogError($"Error al conectarse a la BD :{path}", e.StackTrace);
+                return registrosAInsertar.Count;
+            }
+            catch (IOException e)
+            {
+                 _logger.LogError($"Error al procesar el archivo Csv :{path}", e.StackTrace);
+                return registrosAInsertar.Count;
+            }
+            catch (InsufficientMemoryException exMemory)
+            {
+                _logger.LogError($"Error de memoria - File: {path}", exMemory.StackTrace);
                 return registrosAInsertar.Count;
             }
  

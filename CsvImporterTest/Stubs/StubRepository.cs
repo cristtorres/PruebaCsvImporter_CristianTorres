@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CsvImporterTest.Stubs
 {
-    public class StubStock
+    public class StubRepository
     {
         private static List<StockModel> stocksCargados = new List<StockModel>();
         public static bool Clear() {

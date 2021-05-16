@@ -15,7 +15,7 @@ namespace CsvImporter.Utils.Strategies
         {
             _logger = logger;
         }
-        List<StockModel> IStrategy.ExecuteAlgorithm(string path, string delimiter)
+       public List<StockModel> ExecuteAlgorithm(string path, string delimiter)
         {
             List<StockModel> registrosAInsertar = new List<StockModel>();
             var stopwatch = new Stopwatch();

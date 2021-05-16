@@ -55,9 +55,8 @@ namespace CsvImporter.Repositories
             try
             {
                 _logger.LogInformation("Eliminando datos de la tabla..");
-                _db.Database.ExecuteSqlRaw("truncate table stock");
-            
-                  _db.SaveChanges();
+                _db.Database.ExecuteSqlRaw("truncate table stock");            
+                _db.SaveChanges();
                 _logger.LogInformation("Tabla actualizada para la insercion masiva ");
                 return true; 
             }

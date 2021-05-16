@@ -43,18 +43,15 @@ namespace CsvImporter
                  options => options.UseSqlServer(connectionToAttachSql));
 
             /*Configuracion de la estrategia a utilizar para leer el Flat File*/
-            services.AddTransient<IStrategy, StrategyFileHelpers>();
+            services.AddScoped<IStrategy, StrategyStreamReader>();
             services.AddTransient<IRepository, Repository>();
-
             services.AddTransient<IReaderService, LocalReaderCsvService>();
-            //services.AddSingleton<EntryPoint>();
 
             Log.Logger = new LoggerConfiguration()
                 .Enrich.FromLogContext()
                 .Enrich.WithProperty("Application", "CsvImporter")
                 .ReadFrom.Configuration(configuration)
                 .CreateLogger();
-
             services.AddLogging(loggingBuilder =>
                 loggingBuilder.AddSerilog());
             return services;

@@ -52,10 +52,8 @@ namespace CsvImporter
             catch (Exception exception)
             {
                 _logger.LogError($"Error al procesar el archivo csv ", exception.Message);
-                return false;
-               
+                return false;     
             }
-
         }
 
         /// <summary>
@@ -69,46 +67,6 @@ namespace CsvImporter
                 .ConfigureServices(services =>
                 {
                     Ioc.ConfigureServices(services);
-                    //services.AddTransient<Program>();
-                    //var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-                    //var builder = new ConfigurationBuilder()
-                    //    .AddJsonFile($"appsettings.json", true, true)
-                    //    .AddJsonFile($"appsettings.{env}.json", true, true)
-                    //    .AddEnvironmentVariables();
-
-                    //IConfiguration configuration = builder.Build();
-                    //var connectionPath = configuration.GetConnectionString("DefaultConnection");
-                    //var path = System.IO.Directory.GetCurrentDirectory();
-                    //string connectionToAttachSql = string.Empty;
-                    //if (path.Contains("\\bin\\Debug\\netcoreapp3.1"))
-                    //{
-                    //   var pathSinfolderBin = path.Replace("\\bin\\Debug\\netcoreapp3.1", string.Empty);
-                    //      connectionToAttachSql = connectionPath.Replace("%PATH%", pathSinfolderBin);
-                    //}
-                    //else
-                    //{
-                    //      connectionToAttachSql = connectionPath.Replace("%PATH%", path);
-                    //}
-
-                    //services.AddSingleton(configuration);
-
-                    //services.AddDbContext<ApplicationDbContext>(
-                    //     options => options.UseSqlServer(connectionToAttachSql));
-
-                    // services.AddTransient<IStrategy, StrategyStreamReader>();
-                    //services.AddTransient<IRepository,Repository>();
-
-                    //services.AddTransient<IReaderService, LocalReaderCsvService>();
-                    ////services.AddSingleton<EntryPoint>();
- 
-                    //Log.Logger = new LoggerConfiguration()
-                    //    .Enrich.FromLogContext()
-                    //    .Enrich.WithProperty("Application", "CsvImporter")
-                    //    .ReadFrom.Configuration(configuration)
-                    //    .CreateLogger();
- 
-                    //services.AddLogging(loggingBuilder =>
-                    //    loggingBuilder.AddSerilog());
                 });
         }
 

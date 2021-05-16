@@ -7,6 +7,6 @@ namespace CsvImporter.Utils.Strategies
 {
     public interface IStrategy
     {
-        public List<StockModel> ExecuteAlgorithm(string path, string delimiter);
+          List<StockModel> ExecuteAlgorithm(string path, string delimiter);
     }
 }

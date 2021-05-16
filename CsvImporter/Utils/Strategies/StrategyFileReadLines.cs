@@ -9,11 +9,11 @@ using System.Linq;
 
 namespace CsvImporter.Utils.Strategies
 {
-    class IStrategyFileReadLines: IStrategy
+    class StrategyFileReadLines: IStrategy
     {
 
-        private readonly ILogger<IStrategyFileReadLines> _logger;
-        public IStrategyFileReadLines(ILogger<IStrategyFileReadLines> logger)
+        private readonly ILogger<StrategyFileReadLines> _logger;
+        public StrategyFileReadLines(ILogger<StrategyFileReadLines> logger)
         {
             _logger = logger;
         }
