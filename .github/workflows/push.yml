@@ -17,16 +17,16 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.101    
+        dotnet-version: 3.1.x    
 
       # restore dependencies  
     - name: Install dependencies
-      run: dotnet restore .CsvImporter/CsvImporter.sln
+      run: dotnet restore .PruebaCsvImporter_CristianTorres/CsvImporter/CsvImporter.sln
 
       # build project
     - name: Build
-      run: dotnet build .CsvImporter/CsvImporter.sln --configuration $config --no-restore
+      run: dotnet build .PruebaCsvImporter_CristianTorres/CsvImporter/CsvImporter.sln --configuration $config --no-restore
       
       # run tests project
     - name: Tests      
-      run: dotnet test --no-restore --no-build --configuration $config --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};"
+      run: dotnet test --restore --build --configuration 
